@@ -8,13 +8,8 @@ import DialogWindow from "./DialogWindow.vue";
 const { cards, setCurrentCard, openEditDialog, openDeleteDialog } = store();
 
 const KanbanColumns = ref([
+  { title: "В обработке", cards: cards },
   {
-    statusType: "in-progress",
-    title: "В обработке",
-    cards: cards,
-  },
-  {
-    statusType: "cancelled",
     title: "Отменена",
     cards: [
       {
@@ -28,7 +23,6 @@ const KanbanColumns = ref([
     ],
   },
   {
-    statusType: "completed",
     title: "Выполнена",
     cards: [
       {
@@ -49,7 +43,7 @@ const KanbanColumns = ref([
 
 const createNewCard = () => {
   setCurrentCard({
-    id: cards.value.length,
+    id: cards.value.length ? cards.value.length : 0,
     title: "",
     contactName: "",
     contactPhone: "",

@@ -9,7 +9,7 @@ const state = reactive<{
 }>({
   cards: [],
   currentCard: {
-    id: undefined,
+    id: 0,
     title: "",
     contactName: "",
     contactPhone: "",
@@ -21,16 +21,16 @@ const state = reactive<{
 });
 
 function saveCard() {
-  // const index = state.cards.findIndex(
-  //   (card) => card.id === state.currentCard.id
-  // );
-  // if (index !== -1) {
-  //   state.cards[index] = state.currentCard;
-  // } else {
-  state.cards.push(state.currentCard);
+  const index = state.cards.findIndex(
+    (card) => card.id === state.currentCard.id
+  );
+  if (index !== -1) {
+    state.cards[index] = state.currentCard;
+  } else {
+    state.cards.push(state.currentCard);
+  }
   console.log("saveCard");
   console.log(state.currentCard);
-  // }
 }
 function deleteCard() {
   state.cards = state.cards.filter((card) => card.id !== state.currentCard.id);
@@ -56,7 +56,7 @@ function openDeleteDialog() {
 }
 function closeDialog() {
   state.currentCard = {
-    id: -1,
+    id: 0,
     title: "",
     contactName: "",
     contactPhone: "",

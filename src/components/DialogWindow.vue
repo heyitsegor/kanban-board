@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import store from "../stores/store.ts";
 import DefaultButton from "./DefaultButton.vue";
 
@@ -12,18 +13,18 @@ const {
   closeDialog,
 } = store();
 
-const updatedCardData = currentCard.value;
+const updatedCardData = currentCard;
 
 const updateAndSaveCard = () => {
-  updatedCardData.id = currentCard.value.id;
+  updatedCardData.value.id = currentCard.value.id;
   console.log(updatedCardData);
-  setCurrentCard(updatedCardData);
+  setCurrentCard(updatedCardData.value);
   saveCard();
   closeDialog();
 };
 
 const updateAndDeleteCard = () => {
-  setCurrentCard(updatedCardData);
+  setCurrentCard(updatedCardData.value);
   deleteCard();
   closeDialog();
 };
