@@ -36,11 +36,6 @@ const KanbanColumns = ref([
     ],
   },
 ]);
-
-// KanbanColumns.value.forEach((column) => {
-//   column.cards = cards.filter((card) => card.status === column.statusType);
-// });
-
 const createNewCard = () => {
   setCurrentCard({
     id: cards.value.length ? cards.value.length : 0,

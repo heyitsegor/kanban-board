@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import store from "../stores/store.ts";
 import DefaultButton from "./DefaultButton.vue";
 

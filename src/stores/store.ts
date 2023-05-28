@@ -1,5 +1,5 @@
 import { reactive, toRefs } from "vue";
-import { CardData } from "../types/cardData.ts";
+import { CardData } from "../types/CardData.ts";
 
 const state = reactive<{
   cards: CardData[];

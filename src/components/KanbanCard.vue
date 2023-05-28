@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CardData } from "../types/cardData.ts";
+import { CardData } from "../types/CardData.ts";
 import DefaultButton from "./DefaultButton.vue";
 
 defineProps<{
