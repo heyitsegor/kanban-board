@@ -1,4 +1,5 @@
 import { reactive, toRefs } from "vue";
+import { v1 as uuidv1 } from "uuid";
 import { CardData } from "../types/CardData.ts";
 
 const state = reactive<{
@@ -7,7 +8,32 @@ const state = reactive<{
   showDialog: Boolean;
   isDelete: Boolean;
 }>({
-  cards: [],
+  cards: [
+    {
+      id: uuidv1(),
+      title: "FooBar",
+      contactName: "John Doe",
+      contactPhone: "555-555",
+      totalAmount: "1000",
+      status: "in-progress",
+    },
+    {
+      id: uuidv1(),
+      title: "FooBar2",
+      contactName: "Ivan Ivanov",
+      contactPhone: "555-555",
+      totalAmount: "1000",
+      status: "cancelled",
+    },
+    {
+      id: uuidv1(),
+      title: "FooBar3",
+      contactName: "No Name",
+      contactPhone: "123-321",
+      totalAmount: "555",
+      status: "completed",
+    },
+  ],
   currentCard: {
     id: 0,
     title: "",
@@ -19,6 +45,17 @@ const state = reactive<{
   showDialog: false,
   isDelete: false,
 });
+
+const fetchCards = () => {
+  const savedCards = JSON.parse(localStorage.getItem("cards"));
+  if (savedCards) {
+    state.cards = savedCards;
+  }
+};
+
+const setCardsLocalStorage = () => {
+  localStorage.setItem("cards", JSON.stringify(state.cards));
+};
 
 function saveCard() {
   const index = state.cards.findIndex(
@@ -78,5 +115,7 @@ export default function store() {
     openEditDialog,
     openDeleteDialog,
     closeDialog,
+    fetchCards,
+    setCardsLocalStorage,
   };
 }

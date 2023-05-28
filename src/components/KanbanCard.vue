@@ -4,13 +4,20 @@ import DefaultButton from "./DefaultButton.vue";
 
 defineProps<{
   card: CardData;
+  isRendered: boolean;
 }>();
+
+const currentStatus = {
+  "in-progress": "в обработке",
+  cancelled: "отменена",
+  completed: "выполнена",
+};
 </script>
 
 <template>
   <div
     class="card"
-    :data-id="card.id"
+    v-if="isRendered"
     :data-status="card.status"
   >
     <h2 class="title">{{ card.title }}</h2>
@@ -19,7 +26,7 @@ defineProps<{
       <p>Тел.: {{ card.contactPhone }}</p>
       <p>Сумма сделки: {{ card.totalAmount }}р</p>
     </div>
-    <p>Статус:</p>
+    <p>Статус: {{ currentStatus[card.status] }}</p>
     <div class="action-buttons">
       <DefaultButton
         @click="$emit('open-edit-dialog', card.id)"
@@ -36,7 +43,6 @@ defineProps<{
 <style scoped>
 .card {
   margin: 1rem;
-  margin-top: 2rem;
   padding: 10px;
   border: 2px solid;
 }
