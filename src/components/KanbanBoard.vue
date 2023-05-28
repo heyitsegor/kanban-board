@@ -13,6 +13,7 @@ const columns = [
   <div class="board">
     <KanbanColumn
       v-for="column in columns"
+      :class="column.cardStatus"
       :title="column.title"
       :cardStatus="column.cardStatus"
     >

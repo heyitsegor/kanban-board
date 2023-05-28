@@ -91,6 +91,7 @@ const deleteCard = (cardId: number) => {
 button {
   position: absolute;
   right: 0;
+  margin-top: 5px;
   padding: 0;
   background-color: transparent;
   border: none;

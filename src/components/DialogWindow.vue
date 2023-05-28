@@ -14,15 +14,14 @@ const {
 
 const updatedCardData = currentCard;
 
-const updateAndSaveCard = () => {
+const confirmSave = () => {
   updatedCardData.value.id = currentCard.value.id;
-  console.log(updatedCardData);
   setCurrentCard(updatedCardData.value);
   saveCard();
   closeDialog();
 };
 
-const updateAndDeleteCard = () => {
+const confirmDelete = () => {
   setCurrentCard(updatedCardData.value);
   deleteCard();
   closeDialog();
@@ -67,7 +66,7 @@ const updateAndDeleteCard = () => {
             button-text="Отменить"
           />
           <DefaultButton
-            @click="updateAndSaveCard"
+            @click="confirmSave"
             button-text="Применить"
           />
         </div>
@@ -81,7 +80,7 @@ const updateAndDeleteCard = () => {
             button-text="Нет"
           />
           <DefaultButton
-            @click="updateAndDeleteCard"
+            @click="confirmDelete"
             button-text="Да"
           />
         </div>

@@ -7,7 +7,7 @@ defineProps<{
   isRendered: boolean;
 }>();
 
-const currentStatus = {
+const statusToLable = {
   "in-progress": "в обработке",
   cancelled: "отменена",
   completed: "выполнена",
@@ -17,6 +17,7 @@ const currentStatus = {
 <template>
   <div
     class="card"
+    draggable="true"
     v-if="isRendered"
     :data-status="card.status"
   >
@@ -26,7 +27,7 @@ const currentStatus = {
       <p>Тел.: {{ card.contactPhone }}</p>
       <p>Сумма сделки: {{ card.totalAmount }}р</p>
     </div>
-    <p>Статус: {{ currentStatus[card.status] }}</p>
+    <p>Статус: {{ statusToLable[status] }}</p>
     <div class="action-buttons">
       <DefaultButton
         @click="$emit('open-edit-dialog', card.id)"
@@ -45,6 +46,7 @@ const currentStatus = {
   margin: 1rem;
   padding: 10px;
   border: 2px solid;
+  cursor: move;
 }
 
 .card[data-status="in-progress"] {
