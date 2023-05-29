@@ -16,8 +16,9 @@ const statusToLable = {
 
 <template>
   <div
-    class="card"
+    @dragstart.once="$emit('dragging-card', card.id)"
     draggable="true"
+    class="card"
     v-if="isRendered"
     :data-status="card.status"
   >
@@ -27,7 +28,7 @@ const statusToLable = {
       <p>Тел.: {{ card.contactPhone }}</p>
       <p>Сумма сделки: {{ card.totalAmount }}р</p>
     </div>
-    <p>Статус: {{ statusToLable[status] }}</p>
+    <p>Статус: {{ statusToLable[card.status] }}</p>
     <div class="action-buttons">
       <DefaultButton
         @click="$emit('open-edit-dialog', card.id)"

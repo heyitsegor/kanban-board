@@ -73,6 +73,9 @@ function deleteCard() {
 function setCurrentCard(card: CardData) {
   state.currentCard = card;
 }
+function getCurrentCard() {
+  return state.currentCard;
+}
 function openEditDialog() {
   state.showDialog = true;
   state.isDelete = false;
@@ -100,6 +103,7 @@ export default function store() {
     saveCard,
     deleteCard,
     setCurrentCard,
+    getCurrentCard,
     openEditDialog,
     openDeleteDialog,
     closeDialog,

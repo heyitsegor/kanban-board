@@ -12,6 +12,7 @@ const props = defineProps<{
 const {
   cards,
   setCurrentCard,
+  getCurrentCard,
   openEditDialog,
   openDeleteDialog,
   fetchCards,
@@ -46,10 +47,25 @@ const deleteCard = (cardId: number) => {
     openDeleteDialog();
   }
 };
+
+const getDraggingCard = (cardId: number) => {
+  const card = cards.value.find((card) => card.id === cardId);
+  if (card) {
+    setCurrentCard(card);
+  }
+};
+
+const handleDrag = () => {
+  const card = getCurrentCard();
+  card.status = props.cardStatus;
+};
 </script>
 
 <template>
-  <div class="column">
+  <div
+    @dragenter="handleDrag"
+    class="column"
+  >
     <h1>
       {{ title }}
     </h1>
@@ -67,6 +83,7 @@ const deleteCard = (cardId: number) => {
       </div>
       <ul>
         <KanbanCard
+          @dragging-card="getDraggingCard"
           @open-edit-dialog="editCard"
           @open-delete-dialog="deleteCard"
           v-for="card in cards"
